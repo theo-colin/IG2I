@@ -1,12 +1,13 @@
-// TP GESTION D'UNE BIBLIOTHEQUE
+// TP GESTION D'UNE BIBLIOTHEQUE 
 #include "biblio.h"
 
 int menu()
 {
 	int choix;
+	
 // au programme du TP6 :
-printf("\n\n 1 - ajouter un nouveau livre dans la bibliotheque ");
-printf("\n 2 - afficher tous les livres de la bibliotheque ");
+printf("\n\n 1 - ajouter un nouveau livre dans la bibliotheque "); 
+printf("\n 2 - afficher tous les livres de la bibliotheque "); 
 printf("\n 3 - rechercher un livre (par son titre)");  // il peut y avoir plusieurs livres de même titre. Dans ce cas, indiquez le nombre d'exemplaires disponibles
 printf("\n 4 - rechercher et afficher tous les livres d'un auteur");
 printf("\n 5 - supprimer un livre de la bibliotheque");
@@ -24,7 +25,7 @@ printf("\n 10 - trier les livres (par annee)");
 */
 // si les 5 choix (6-10) sont bien codés, changez le type T_Emp et remplacez-le par la structure T_Emp visible dans livre.h
 // vous pourrez alors faire les menus 11,12,etc...
-// printf("\n 11- lister les livres disponibles ");
+// printf("\n 11- lister les livres disponibles "); 
 // printf("\n 12 - lister les emprunts en retard "); //on suppose qu'un emprunt dure 7 jours.
 // printf("\n 13 - ... imaginez vous même vos propres fonctionnalités ")
 
@@ -37,14 +38,16 @@ return choix;
 }
 
 
+
 int main()
 {
 int reponse,chx;
-T_Bibliotheque B;
+char recherche[MAX_TITRE];
+char recherche2[MAX];
+char *rechercheLivre ;
+char *rechercheAuteur;
+T_Bibliotheque B; 
 init( &B );
-lectureFichierTXT();
-chargement(T_Bibliotheque &B);
-
 
 do
 {
@@ -58,88 +61,50 @@ switch(chx)
 					printf("impossible d ajouter (bibliotheque pleine)");
 			break;
 	case 2 : reponse=afficherBibliotheque(&B);
-			if (reponse==0)
+			if (reponse==0)	
 					printf("La bibliotheque est vide");
-			break;
 
-
-
-
+			break;	
+	
+	case 3:
+		printf("\nEntrer le titre d'un livre à rechercher :");
+		rechercheLivre=lire(recherche,MAX_TITRE);
+		if(rechercherTitre(&B,rechercheLivre)!=0){
+			printf("Il y a %d exemplaire(s) de ce livre dans la bibliotheque",rechercherTitre(&B,rechercheLivre));
+		}
+		else{
+			printf("Le livre n'est pas dans la bibliotheque");
+		}
+		break;
+		
+	case 4 :
+		printf("\nEntrer le nom d'un Auteur ");
+		rechercheAuteur=lire(recherche2,MAX); 
+		if(rechercherAuteur(&B,rechercheAuteur)==0){
+			printf("Il n'y a pas de livre de cet auteur");
+		}
+		break;
+		
+	case 5 :
+		printf("\nEntrer le titre d'un livre à supprimer :");
+		rechercheLivre=lire(recherche,MAX_TITRE);
+		printf("\nEntrer le nom de l'auteur du livre à supprimer :");
+		rechercheAuteur=lire(recherche2,MAX);
+		if (supprimer(&B,rechercheLivre,rechercheAuteur)==0){
+			printf("\nLe livre n'est pas dans la bibliotheque");
+		}
+		else{
+			printf("\nSupression réussi");
+		}
 	}
 
 }while(chx!=0);
 
-void sauvegarde(T_Bibliotheque &B) ;
+
 
 
 
 
 return 0;
 
-}
-
-
-void sauvegarde(T_Bibliotheque *ptrB) {
-    FILE *fic = NULL; //le type FILE
-    int i;
-    fic = fopen("baseLivres", "w"); // w = le mode = write avec ECRASEMENT
-//fopen renvoie NULL si probleme (disque plein, disque non accessible ...
-    if (fic != NULL) {
-        for (i = 0; i < ptrB->nbLivres; i++) {
-//fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
-            fwrite(&(ptrB->etagere[i]), sizeof(T_livre), 1, fic);
-
-        }
-        fclose(fic);
-        puts("SAUVEGARDE REUSSIE ..............");
-
-
-    } else puts("ECHEC DE SAUVEGARDE  !!!!!  ");
-}
-
-void chargement(T_Bibliotheque *ptrB) {
-    FILE *fic = NULL; //le type FILE
-    int i = 0;
-    fic = fopen("baseLivres", "r"); // r = le mode read
-//fopen renvoie NULL si probleme (disque plein, disque non accessible ...
-    if (fic != NULL) {
-        do {
-
-            fread(&(ptrB->etagere[i]), sizeof(T_livre), 1, fic);
-            i++;
-        } while (!feof(fic));
-        fclose(fic);
-        ptrB->nbLivres = i - 1;
-        puts("CHARGEMENT  REUSSI ..............");
-    } else puts("ECHEC DE CHARGEMENT  !!!!!  ");
-
-}
-
-void lectureFichierTXT()
-{
-    int M=100;
-    FILE *fic=NULL; //le type FILE
-    char chaine[M];
-    char chaine2[M];
-    char c;
-    fic=fopen("fic.txt","rt"); // r = le mode read   w = mode write (avec ecrasement)
-//fopen renvoie NULL si probleme (fichier effac� , disque non accessible ...
-    if (fic!=NULL)
-    {
-        do
-        {
-            //fgets(chaine,M,fic);   //fputs pour �crire dans un fichier txt
-            //fscanf(fic,"%s",chaine); //fprintf pour �crire dans un fichier txt
-            //	fscanf(fic,"%s %s",chaine,chaine2);
-            fscanf(fic,"%c",&c);
-            //fscanf(fic,"%c",&chaine[0]);
-            //	if (!feof(fic))
-            //printf("\n\t >%s--%s<",chaine,chaine2);
-            printf(">%c<",c);
-        }
-        while(!feof(fic));
-        fclose(fic);
-        puts("\nLECTURE REUSSIE ..............");
-    }
-    else puts("ECHEC DE LECTURE DU FICHIER TXT !!!!!  ");
 }

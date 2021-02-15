@@ -22,9 +22,9 @@ typedef struct
 void init (T_Bibliotheque *ptrB);
 int ajouterLivre(T_Bibliotheque  *ptrB);
 int  afficherBibliotheque(const T_Bibliotheque  *ptrB);
-void lectureFichierTXT();
-void sauvegarde(T_Bibliotheque *ptrB);
-void chargement(T_Bibliotheque *ptrB);
+int rechercherTitre(T_Bibliotheque *ptrB,char *rechercheT);
+int rechercherAuteur(T_Bibliotheque *ptrB,char *rechercheA);
+int supprimer(T_Bibliotheque *ptrB, char *rechercheT,char *rechercheA) ;
 
 
 #endif
