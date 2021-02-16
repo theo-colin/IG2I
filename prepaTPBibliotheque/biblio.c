@@ -9,7 +9,7 @@ ptrB->nbLivres=0;
 
 int ajouterLivre(T_Bibliotheque  *ptrB)
 {
-if (ptrB->nbLivres<CAPACITE_BIBLIO)// reste t il de la place?
+if (ptrB->nbLivres< CAPACITE_BIBLIO )// reste t il de la place?
 	{
 	saisirLivre(&(ptrB->etagere[ptrB->nbLivres]));
 	ptrB->nbLivres++;
