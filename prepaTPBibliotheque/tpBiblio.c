@@ -48,6 +48,7 @@ char *rechercheLivre ;
 char *rechercheAuteur;
 T_Bibliotheque B; 
 init( &B );
+chargement(&B) ;
 
 do
 {
@@ -100,8 +101,7 @@ switch(chx)
 
 }while(chx!=0);
 
-
-
+sauvegarde(&B) ;
 
 
 
