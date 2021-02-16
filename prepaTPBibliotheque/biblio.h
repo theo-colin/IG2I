@@ -18,7 +18,7 @@ typedef struct
 
 
 
-///prototypes
+//prototypes
 void init (T_Bibliotheque *ptrB);
 int ajouterLivre(T_Bibliotheque  *ptrB);
 int  afficherBibliotheque(const T_Bibliotheque  *ptrB);

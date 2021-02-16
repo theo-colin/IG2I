@@ -134,4 +134,3 @@ sauvegarde(&B) ;
 return 0;
 
 }
-//

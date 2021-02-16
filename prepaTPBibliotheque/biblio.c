@@ -196,4 +196,3 @@ void chargement(T_Bibliotheque *ptrB)
 
 
 
-
