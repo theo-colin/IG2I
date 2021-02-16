@@ -50,8 +50,7 @@ int rechercherTitre(T_Bibliotheque*ptrB,char *rechercheT){//la fonction renvoie 
 	else{
 		for (i=0;i<ptrB->nbLivres;i++){
 			if (strcmp(rechercheT,ptrB->etagere[i].titre)==0){
-				compteur=compteur+1
-				;
+				compteur=compteur+1;
 			}
 			
 		}
