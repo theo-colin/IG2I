@@ -21,8 +21,37 @@ return 0;
 	
 }
 
+int emprunter(T_Bibliotheque *ptrB, char rechercheE)
+{
 
-int  afficherBibliotheque(const T_Bibliotheque  *ptrB)
+    return 0 ;
+}
+
+int rendre(T_Bibliotheque *ptrB, char rechercheE)
+{
+
+    return 0 ;
+}
+
+int trieurTitre(T_Bibliotheque *ptrB)
+{
+    int i ;
+    char aux[MAX] ;
+    for(i=0;i-1<ptrB->nbLivres;i++)
+    {
+        if(strcmp(ptrB->etagere[i].titre,ptrB->etagere[i+1].titre)>0)
+        {
+            strcpy(aux,ptrB->etagere[i].titre) ;
+            strcpy(ptrB->etagere[i].titre,ptrB->etagere[i+1].titre) ;
+            strcpy(ptrB->etagere[i+1].titre,aux ) ;
+        }
+
+    }
+    return 0 ;
+}
+
+
+int  afficherBibliotheque(const T_Bibliotheque *ptrB)
 {
 int i;
 if(ptrB->nbLivres==0)
@@ -110,6 +139,8 @@ int supprimer(T_Bibliotheque *ptrB, char *rechercheT,char *rechercheA) {
 
 }
 
+
+
 void sauvegarde(T_Bibliotheque *ptrB)
 {
     FILE *fic=NULL; //le type FILE
@@ -159,6 +190,7 @@ void chargement(T_Bibliotheque *ptrB)
     else puts("ECHEC DE CHARGEMENT  !!!!!  ");
 
 }
+
 
 
 

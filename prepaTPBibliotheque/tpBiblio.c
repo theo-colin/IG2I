@@ -17,12 +17,12 @@ printf("\n 5 - supprimer un livre de la bibliotheque");
 // au programme du TP7 :
 // ajouter le champ emprunteur à votre structure T_Livre
 
-/*printf("\n 6 - emprunter un livre de la bibliotheque");
+printf("\n 6 - emprunter un livre de la bibliotheque");
 printf("\n 7 - restituer/rendre un livre de la bibliotheque");
 printf("\n 8 - trier les livres (par titre)");
 printf("\n 9 - trier les livres (par auteur)");
 printf("\n 10 - trier les livres (par annee)");
-*/
+
 // si les 5 choix (6-10) sont bien codés, changez le type T_Emp et remplacez-le par la structure T_Emp visible dans livre.h
 // vous pourrez alors faire les menus 11,12,etc...
 // printf("\n 11- lister les livres disponibles "); 
@@ -46,6 +46,7 @@ char recherche[MAX_TITRE];
 char recherche2[MAX];
 char *rechercheLivre ;
 char *rechercheAuteur;
+
 T_Bibliotheque B; 
 init( &B );
 chargement(&B) ;
@@ -55,19 +56,19 @@ do
 chx= menu();
 switch(chx)
 	{
-	case  1 : reponse = ajouterLivre(   &B  );
+	    case  1 : reponse = ajouterLivre(   &B  );
 				if (reponse==1)
 					printf(" ajout reussi !!");
 					else
 					printf("impossible d ajouter (bibliotheque pleine)");
 			break;
-	case 2 : reponse=afficherBibliotheque(&B);
+	    case 2 : reponse=afficherBibliotheque(&B);
 			if (reponse==0)	
 					printf("La bibliotheque est vide");
 
 			break;	
 	
-	case 3:
+	    case 3:
 		printf("\nEntrer le titre d'un livre à rechercher :");
 		rechercheLivre=lire(recherche,MAX_TITRE);
 		if(rechercherTitre(&B,rechercheLivre)!=0){
@@ -76,17 +77,17 @@ switch(chx)
 		else{
 			printf("Le livre n'est pas dans la bibliotheque");
 		}
-		break;
+		    break;
 		
-	case 4 :
+	    case 4 :
 		printf("\nEntrer le nom d'un Auteur ");
 		rechercheAuteur=lire(recherche2,MAX); 
 		if(rechercherAuteur(&B,rechercheAuteur)==0){
 			printf("Il n'y a pas de livre de cet auteur");
 		}
-		break;
+		    break;
 		
-	case 5 :
+	    case 5 :
 		printf("\nEntrer le titre d'un livre à supprimer :");
 		rechercheLivre=lire(recherche,MAX_TITRE);
 		printf("\nEntrer le nom de l'auteur du livre à supprimer :");
@@ -97,6 +98,31 @@ switch(chx)
 		else{
 			printf("\nSupression réussi");
 		}
+		    break ;
+
+	    case 6 :
+
+            break ;
+	    case 7 :
+
+
+	        break ;
+
+	    case 8 :
+	        trieurTitre(&B);
+	        afficherBibliotheque(&B);
+
+	        break ;
+
+	    case 9 :
+
+	        break ;
+
+	    case 10 :
+
+	        break ;
+
+
 	}
 
 }while(chx!=0);
