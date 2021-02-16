@@ -1,5 +1,5 @@
 #include "es.h"
-
+//
 
 char *lire(char* lachaine,int nbMAXcaracAsaisir)
 {
