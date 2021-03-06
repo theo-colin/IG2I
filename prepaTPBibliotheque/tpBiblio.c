@@ -6,6 +6,7 @@ int menu()
 	int choix;
 	
 // au programme du TP6 :
+
 printf("\n\n 1 - ajouter un nouveau livre dans la bibliotheque "); 
 printf("\n 2 - afficher tous les livres de la bibliotheque "); 
 printf("\n 3 - rechercher un livre (par son titre)");  // il peut y avoir plusieurs livres de même titre. Dans ce cas, indiquez le nombre d'exemplaires disponibles
@@ -46,6 +47,8 @@ char recherche[MAX_TITRE];
 char recherche2[MAX];
 char *rechercheLivre ;
 char *rechercheAuteur;
+int emprunterL ;
+int restituerL ;
 
 T_Bibliotheque B; 
 init( &B );
@@ -101,10 +104,37 @@ switch(chx)
 		    break ;
 
 	    case 6 :
+            printf("\nEntrer le titre d'un livre à emprunter :");
+            rechercheLivre=lire(recherche,MAX_TITRE);
+            printf("\nEntrer le nom de l'auteur du livre à emprunter :");
+            rechercheAuteur=lire(recherche2,MAX);
+            emprunterL=emprunter(&B,rechercheLivre,rechercheAuteur);
+            if(emprunterL==0){
+                printf("\nLe livre n'est pas dans la bibliotheque");
+            }
+            else if (emprunterL==2){
+                printf("\n Le livre est déja emprunté ");
+            }
+            else {
+                printf("\n emprunt réussi ");
+            }
 
             break ;
 	    case 7 :
-
+            printf("\nEntrer le titre du livre à restituer :");
+            rechercheLivre=lire(recherche,MAX_TITRE);
+            printf("\nEntrer le nom de l'auteur du livre à restituer :");
+            rechercheAuteur=lire(recherche2,MAX);
+            restituerL=restituer(&B,rechercheLivre,rechercheAuteur);
+            if(restituerL==0){
+                printf("\nLe livre n'est pas dans la bibliotheque");
+            }
+            else if(restituerL==1){
+                printf("\nLe livre a été restitué avec succès");
+            }
+            else{
+                printf("\nLe Livre été déjà restitué");
+            }
 
 	        break ;
 
@@ -115,6 +145,8 @@ switch(chx)
 	        break ;
 
 	    case 9 :
+            trieurAuteur(&B);
+            afficherBibliotheque(&B);
 
 	        break ;
 

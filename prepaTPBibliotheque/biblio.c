@@ -21,32 +21,63 @@ return 0;
 	
 }
 
-int emprunter(T_Bibliotheque *ptrB, char rechercheE)
-{
-
-    return 0 ;
-}
-
-int rendre(T_Bibliotheque *ptrB, char rechercheE)
-{
-
-    return 0 ;
-}
 
 int trieurTitre(T_Bibliotheque *ptrB)
 {
     int i ;
-    char aux[MAX] ;
+    int a ;
+    T_Bibliotheque aux ;
     for(i=0;i-1<ptrB->nbLivres;i++)
     {
-        if(strcmp(ptrB->etagere[i].titre,ptrB->etagere[i+1].titre)>0)
+        if(strcmp(ptrB->etagere[i].titre,ptrB->etagere[i+1].titre)<0)
         {
-            strcpy(aux,ptrB->etagere[i].titre) ;
-            strcpy(ptrB->etagere[i].titre,ptrB->etagere[i+1].titre) ;
-            strcpy(ptrB->etagere[i+1].titre,aux ) ;
+            aux.etagere[i] = ptrB->etagere[i] ;
+            ptrB->etagere[i] = ptrB->etagere[i+1] ;
+            ptrB->etagere[i+1] = aux.etagere[i]  ;
         }
 
     }
+    //il faut inverser le tableau car la fonction trie actuellement dans l'ordre inverse de l'alphabet
+    i=0 ;
+    while(i < ptrB->nbLivres/2 )
+    {
+        aux.etagere[i] = ptrB->etagere[i];
+        ptrB->etagere[i] = ptrB->etagere[ptrB->nbLivres-1-i] ;
+        ptrB->etagere[ ptrB->nbLivres-1-i] = aux.etagere[i] ;
+        i=i+1 ;
+    }
+    a = ptrB->nbLivres ;
+    printf("nblivres : %d \n",a);
+    return 0 ;
+}
+
+int trieurAuteur(T_Bibliotheque *ptrB)
+{
+    int i ;
+    int a ;
+    T_Bibliotheque aux ;
+    for(i=0;i-1<ptrB->nbLivres;i++)
+    {
+        if(strcmp(ptrB->etagere[i].auteur,ptrB->etagere[i+1].auteur)<0)
+        {
+            aux.etagere[i] = ptrB->etagere[i] ;
+            ptrB->etagere[i] = ptrB->etagere[i+1] ;
+            ptrB->etagere[i+1] = aux.etagere[i]  ;
+        }
+
+    }
+    //il faut inverser le tableau car la fonction trie actuellement dans l'ordre inverse de l'alphabet
+    i=0 ;
+    while(i < ptrB->nbLivres/2 )
+    {
+        aux.etagere[i] = ptrB->etagere[i];
+        ptrB->etagere[i] = ptrB->etagere[ptrB->nbLivres-1-i] ;
+        ptrB->etagere[ ptrB->nbLivres-1-i] = aux.etagere[i] ;
+        i=i+1 ;
+    }
+    a = ptrB->nbLivres ;
+    printf("nblivres : %d \n",a);
+
     return 0 ;
 }
 
@@ -137,6 +168,59 @@ int supprimer(T_Bibliotheque *ptrB, char *rechercheT,char *rechercheA) {
 		return 1;
 	}
 
+}
+
+int emprunter(T_Bibliotheque *ptrB, char *rechercheT, char *rechercheA)
+{
+    int i = 0;
+    int indice =0;
+    char Nomemp[MAX];
+    if(rechercherTitre(ptrB,rechercheT)==0)
+    {
+        return 0;
+    }
+    else{
+        for (i=0;i<ptrB->nbLivres;i++){
+            if(strcmp(rechercheT,ptrB->etagere[i].titre)==0 && strcmp(rechercheA,ptrB->etagere[i].auteur)==0)//on recherche l'indice du livre à emprunter
+            {
+                indice=i;
+
+            }
+        }
+        if(strcmp(ptrB->etagere[indice].emprunteur,"")==0){
+            printf("Entre votre nom :");
+            strcpy(ptrB->etagere[indice].emprunteur,lire(Nomemp,MAX));
+            return 1;
+        }
+        else {
+            return 2 ;
+        }
+
+    }
+}
+
+int restituer(T_Bibliotheque *ptrB ,char *rechercheT,char *rechercheA){
+    int i=0;
+    int indice=0;
+
+    if(rechercherTitre(ptrB,rechercheT)==0)
+    {
+        return 0;
+    }
+    else{
+        for (i=0;i<ptrB->nbLivres;i++){
+            if(strcmp(rechercheT,ptrB->etagere[i].titre)==0 && strcmp(rechercheA,ptrB->etagere[i].auteur)==0){//on recherche l'indice du livre à restituer
+                indice=i;
+            }
+        }
+        if(strcmp(ptrB->etagere[indice].emprunteur,"")!=0){
+            strcpy(ptrB->etagere[indice].emprunteur,"");
+            return 1;
+        }
+        else {
+            return 2;
+        }
+    }
 }
 
 
