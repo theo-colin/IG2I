@@ -3,6 +3,7 @@
 
 
 #include "livre.h"
+#include <time.h>
 
 #define CAPACITE_BIBLIO 20 // nb maximum de livres ds la bibliotheque
 
@@ -32,7 +33,10 @@ int trieurAnnee(T_Bibliotheque *ptrB);
 int supprimer(T_Bibliotheque *ptrB, char *rechercheT,char *rechercheA) ;
 void chargement(T_Bibliotheque *ptrB) ;
 void sauvegarde(T_Bibliotheque *ptrB) ;
+void afficherLivreEmp(T_livre *L);
+void lireDateSysteme(T_Emp *E);
 int afficherlivredisponible(T_Bibliotheque *ptrB);
+int afficherlisteRetard(T_Bibliotheque *ptrB);
 
 
 #endif
