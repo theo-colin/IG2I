@@ -28,9 +28,11 @@ int emprunter(T_Bibliotheque *ptrB ,char *rechercheT,char *rechercheA) ;
 int restituer(T_Bibliotheque *ptrB ,char *rechercheT,char *rechercheA);
 int trieurTitre(T_Bibliotheque *ptrB);
 int trieurAuteur(T_Bibliotheque *ptrB);
+int trieurAnnee(T_Bibliotheque *ptrB);
 int supprimer(T_Bibliotheque *ptrB, char *rechercheT,char *rechercheA) ;
 void chargement(T_Bibliotheque *ptrB) ;
 void sauvegarde(T_Bibliotheque *ptrB) ;
+int afficherlivredisponible(T_Bibliotheque *ptrB);
 
 
 #endif

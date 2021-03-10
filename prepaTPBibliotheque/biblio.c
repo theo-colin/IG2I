@@ -27,6 +27,7 @@ int trieurTitre(T_Bibliotheque *ptrB)
     int i ;
     int a ;
     T_Bibliotheque aux ;
+
     for(i=0;i-1<ptrB->nbLivres;i++)
     {
         if(strcmp(ptrB->etagere[i].titre,ptrB->etagere[i+1].titre)<0)
@@ -37,8 +38,10 @@ int trieurTitre(T_Bibliotheque *ptrB)
         }
 
     }
+
     //il faut inverser le tableau car la fonction trie actuellement dans l'ordre inverse de l'alphabet
     i=0 ;
+
     while(i < ptrB->nbLivres/2 )
     {
         aux.etagere[i] = ptrB->etagere[i];
@@ -80,6 +83,29 @@ int trieurAuteur(T_Bibliotheque *ptrB)
 
     return 0 ;
 }
+
+int trieurAnnee(T_Bibliotheque *ptrB)
+{
+    int i ;
+    int a ;
+    T_Bibliotheque aux ;
+    for(i=0;i-1<ptrB->nbLivres;i++)
+    {
+        if(ptrB->etagere[i].annee > ptrB->etagere[i+1].annee)
+        {
+            aux.etagere[i] = ptrB->etagere[i] ;
+            ptrB->etagere[i] = ptrB->etagere[i+1] ;
+            ptrB->etagere[i+1] = aux.etagere[i]  ;
+        }
+
+    }
+    a = ptrB->nbLivres ;
+    printf("nblivres : %d \n",a);
+
+    return 0 ;
+}
+
+
 
 
 int  afficherBibliotheque(const T_Bibliotheque *ptrB)
@@ -187,9 +213,9 @@ int emprunter(T_Bibliotheque *ptrB, char *rechercheT, char *rechercheA)
 
             }
         }
-        if(strcmp(ptrB->etagere[indice].emprunteur,"")==0){
+        if(strcmp(ptrB->etagere[indice].emprunteur.nomemprunteur,"")==0){
             printf("Entre votre nom :");
-            strcpy(ptrB->etagere[indice].emprunteur,lire(Nomemp,MAX));
+            strcpy(ptrB->etagere[indice].emprunteur.nomemprunteur,lire(Nomemp,MAX));
             return 1;
         }
         else {
@@ -213,14 +239,29 @@ int restituer(T_Bibliotheque *ptrB ,char *rechercheT,char *rechercheA){
                 indice=i;
             }
         }
-        if(strcmp(ptrB->etagere[indice].emprunteur,"")!=0){
-            strcpy(ptrB->etagere[indice].emprunteur,"");
+        if(strcmp(ptrB->etagere[indice].emprunteur.nomemprunteur,"")!=0){
+            strcpy(ptrB->etagere[indice].emprunteur.nomemprunteur,"");
             return 1;
         }
         else {
             return 2;
         }
     }
+}
+
+int afficherlivredisponible(T_Bibliotheque *ptrB)
+{
+    int i;
+
+        for (i = 0; i < ptrB->nbLivres; i++) {
+            if( (strlen(ptrB->etagere[i].emprunteur.nomemprunteur) <=0 ))
+            {
+                afficherLivre(&(ptrB->etagere[i]));
+            }
+
+        }
+
+    return 0 ;
 }
 
 
