@@ -38,7 +38,7 @@ switch (chx)
 		//testPile(&mapile); //TP9 partie 1 : à ecrire
 		break;
 	case 2 : //testez toutes vos fonctions par un jeu de test de votre choix
-	    testFile(&mafile); //TP9 partie 1 : à ecrire
+	    testFile(mafile); //TP9 partie 1 : à ecrire
 
 		break; 
 	case 3 : 
