@@ -4,8 +4,8 @@ void initFile(T_File *ptrF) //mettre Tete et Queue à -1
 {
     ptrF->Queue = -1 ;
     ptrF->Tete = -1 ;
-    printf("queue : %d\n",ptrF->Queue);
-    printf("Tete : %d\n",ptrF->Tete);
+    /*printf("queue : %d\n",ptrF->Queue);
+    printf("Tete : %d\n",ptrF->Tete); */
 }
 
 int  retirer(T_File *ptrF,T_Elt *ptrE) //si pas vide, en tete de file
@@ -77,11 +77,20 @@ T_Elt  premier(T_File *ptrF) //valeur en tete de file
 
 void afficherFile(T_File *ptrF)
 {
+    T_Elt elt_aux;
     int i ;
-    for (i=0 ; i> ptrF->Queue ; i++)
+    T_File file_aux ;
+    initFile(&file_aux);
+    int taille_file =  ptrF->Queue ;
+    for (i = 0 ;i<taille_file ;i++)
     {
-        printf("%d", ptrF->Elts[i]) ;
-
+        retirer(ptrF,&elt_aux);
+        printf("\n%d",elt_aux);
+    }
+    for (i = 0 ;i <taille_file ; i++)
+    {
+        retirer(&file_aux,&elt_aux);
+        ajouter(ptrF,elt_aux);
     }
 }
 void testerfile(T_File *ptrF)
@@ -97,7 +106,7 @@ void testerfile(T_File *ptrF)
     retirer(ptrF,elt);
     filePleine(ptrF);
     premier(ptrF);
-    //afficherFile(ptrF);
+    afficherFile(ptrF);
     printf("\n%d",ptrF->Queue);
 
 }
