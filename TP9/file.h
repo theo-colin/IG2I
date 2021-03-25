@@ -1,13 +1,13 @@
-#include "es.h" 	 
+#include "es.h"
 
-#define MAX 10 
+#define MAX 10
 
 
-typedef struct  
+typedef struct
 {
-T_Elt Elts[MAX];  // stockage d'éléments de la case 0 à la case MAX-1
-int Tete;
-int Queue; 
+    T_Elt Elts[MAX];  // stockage d'éléments de la case 0 à la case MAX-1
+    int Tete;
+    int Queue;
 } T_File;
 
 void initFile(T_File * ); //mettre Tete et Queue à -1
@@ -17,5 +17,4 @@ int fileVide(const  T_File *); // qd Tete == 0
 int filePleine(const  T_File *); // qd MAX elts dans la file 
 T_Elt  premier(T_File *); //valeur en tete de file
 void afficherFile(T_File *); 
-
 
