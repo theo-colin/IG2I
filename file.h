@@ -16,6 +16,7 @@ int  ajouter(T_File *,T_Elt *); // si espace libre, ajout en queue, revoie 0 si 
 int fileVide(const  T_File *); // qd Tete == 0 
 int filePleine(const  T_File *); // qd MAX elts dans la file 
 T_Elt  premier(T_File *); //valeur en tete de file
-void afficherFile(T_File *); 
+void afficherFile(T_File *);
+void testfile(T_File *);
 
 
