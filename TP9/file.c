@@ -79,9 +79,10 @@ T_Elt  premier(T_File *ptrF) //valeur en tete de file
 void afficherFile(T_File *ptrF)
 {
     int i ;
+    printf("test afficherFile ");
     for (i=0; i<ptrF->Queue;i++)
     {
-        retirer(ptrF ,ptrF->Elts) ;
+        retirer(ptrF ,) ;
         premier(ptrF);
         printf("%d",premier(ptrF));
     }
@@ -95,9 +96,7 @@ void testerfile(T_File *ptrF)
     printf("ajouter l'élément :");
     saisirElt(&elt);
     ajouter(ptrF,&elt);
-    printf("ajouter l'élément :");
-    saisirElt(&elt);
-    retirer(ptrF,&elt);
+     retirer(ptrF,&elt);
     filePleine(ptrF);
     premier(ptrF);
     afficherFile(ptrF);
