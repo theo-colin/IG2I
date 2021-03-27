@@ -9,7 +9,7 @@ void saisirElt(T_Elt *e)
 }
 void afficherElt(T_Elt *e)
 {
-    printf("\n%d",*e);
+    printf(" %d \n",*e);
 }
 void affecterElt(T_Elt *d,T_Elt *s)
 {
