@@ -35,7 +35,7 @@ int main()
         {
             case 1 :
                 //testez toutes vos fonctions par un jeu de test de votre choix
-                //testPile(&mapile); //TP9 partie 1 : à ecrire
+                testPile(&mapile); //TP9 partie 1 : à ecrire
                 break;
             case 2 : //testez toutes vos fonctions par un jeu de test de votre choix
                 testerfile(&mafile);//TP9 partie 1 : à ecrire
