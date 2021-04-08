@@ -1,10 +1,10 @@
 client: DURAND
-25 feutre (PU=1.800000€)::45.00€
-15 regle (PU=2.300000€)::34.50€
-50 agrafeuse (PU=5.600000€)::280.00€
-25 ramette_feuillesA4 (PU=9.900000€)::247.50€
-30 boite_100enveloppes11*21 (PU=8.700000€)::261.00€
-15 boite_100enveloppes30*21 (PU=14.700000€)::220.50€
-15 boite_100enveloppes30*21 (PU=14.700000€)::220.50€
+25 feutre (PU=1.80€)::45.00€
+15 regle (PU=2.30€)::34.50€
+50 agrafeuse (PU=5.60€)::280.00€
+25 ramette_feuillesA4 (PU=9.90€)::247.50€
+30 boite_100enveloppes11*21 (PU=8.70€)::261.00€
+15 boite_100enveloppes30*21 (PU=14.70€)::220.50€
+15 boite_100enveloppes30*21 (PU=14.70€)::220.50€
 
 	TOTAL= 1309.000000

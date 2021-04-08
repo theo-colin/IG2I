@@ -1,8 +1,8 @@
 client: DUPONT
-10 crayon (PU=1.200000€)::12.00€
-25 agrafeuse (PU=5.600000€)::140.00€
-35 ramette_feuillesA4 (PU=9.900000€)::346.50€
-60 boite_100enveloppes11*21 (PU=8.700000€)::522.00€
-50 boite_100enveloppes30*21 (PU=14.700000€)::735.00€
+10 crayon (PU=1.20€)::12.00€
+25 agrafeuse (PU=5.60€)::140.00€
+35 ramette_feuillesA4 (PU=9.90€)::346.50€
+60 boite_100enveloppes11*21 (PU=8.70€)::522.00€
+50 boite_100enveloppes30*21 (PU=14.70€)::735.00€
 
 	TOTAL= 1755.500000
