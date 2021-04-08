@@ -62,7 +62,7 @@ void ecrireFacture(FILE* ficF,char lib[TAILLE],float prixU, int quantite){
 
 	float prixqte=prixU*quantite;
 	if(ficF!=NULL){
-		fprintf(ficF,"%d %s (PU=%f€)::%f€\n",quantite,lib,prixU,prixqte);//&prixU*&quantite//
+		fprintf(ficF,"%d %s (PU=%f€)::%.2f€\n",quantite,lib,prixU,prixqte);//&prixU*&quantite//
 	}
 }
 
@@ -77,7 +77,7 @@ void lireCommande(FILE* fcommande,FILE* ficF){//fcommande est déja ouvert donc 
 	float total =0;// variables qui stock le prix  total de la facture 
 	T_TableauDeProduits Lesproduits;
 	Nbr_liste=RemplirLalistedeProduits(Lesproduits);
-	printf("\nTaille de la liste: %d\n",Nbr_liste);
+	//printf("\nTaille de la liste: %d\n",Nbr_liste);
 	//test de la struc produit printf("\n%s\n",Lesproduits[0].libelle);
 	fscanf(fcommande,"%s",client);
 	fprintf(ficF,"client: %s\n",client);//on ecrit le nom du client sur la facture
@@ -137,7 +137,7 @@ do //ce do while prend fin dès que fichier commandeXXXX.txt est absent
 		}
 	else
 		{
-			printf("\n toutes les commandes presentes ont ete traitees.");
+			printf("\n toutes les commandes presentes ont ete traitees.\n");
 			FILE *f=fopen("nextFact","w"); // on va ecrire la valeur de N dans enxtFact 
 			// pour 
 			fwrite(&N,1,sizeof(int),f);
@@ -150,7 +150,78 @@ do //ce do while prend fin dès que fichier commandeXXXX.txt est absent
 
 }
 
+void lireLesCommandes2()
+{
+    FILE *ficCommande=NULL;
+    FILE *ficFacture = NULL;
+    int FINI=0;
+    int N = lireProchaineCommande(); //numero de la premiere commande qui sera lue et traitee
+    char NNNN[5];
+    char nomCommande[29];
+    char nomFacture[TAILLE];
 
+    do //ce do while prend fin dès que fichier commandeXXXX.txt est absent
+    {
+        strcpy(nomCommande,"./commandes/commande");
+        strcpy(nomFacture,"./factures/facture");
+        convertirNenChaine4(N,NNNN);
+        //printf("\n==>%s<==",NNNN);
+        ficCommande=NULL;
+        ficFacture=NULL;
+        strcat(nomCommande,NNNN);
+        strcat(nomCommande,".txt");
+        strcat(nomFacture,NNNN);
+        strcat(nomFacture,".txt");
+
+        //printf("\n traitement de  %s",nomCommande);
+
+        ficCommande=fopen(nomCommande,"rt");
+        ficFacture = fopen(nomFacture,"wt");
+        if (ficCommande!=NULL)
+        { // le fichier commandeNNNN.txt existe
+            printf("\n fichier %s present",nomCommande);
+            //lireCommande(nomCommande); // à vous de coder cette fonction lors de ce TP9
+            lireCommande(ficCommande,ficFacture);
+            fclose(ficCommande);
+            fclose(ficFacture);
+        }
+        else
+        {
+            printf("\n toutes les commandes presentes ont ete traitees.\n");
+            FILE *f=fopen("nextFact","w"); // on va ecrire la valeur de N dans enxtFact
+            // pour
+            fwrite(&N,1,sizeof(int),f);
+            fclose(f);
+            FINI=1;
+        }
+
+        N++;
+    }while(FINI==0);
+}
+
+/*void LireStocks()
+{
+    int ref_stock;
+    int qtt_stock;
+    //FILE *ficStock=NULL;
+
+    FILE *ficStock=fopen("stock.txt","rt");
+    do{
+        fscanf(ficStock,"%d" "%d",&ref_stock,&qtt_stock);
+        printf("\n %d %d",ref_stock,qtt_stock);
+    }while(!(feof(ficStock)));
+    lireLesCommandes2();
+    if (ref_stock ==ref && qtt > 0)
+    {
+        qtt_stock =qtt_stock -qtt ;
+    }
+    else {
+        FILE *ficalertes=fopen("alertes.txt","wt");
+        if(ficalertes!=NULL) {
+            fprintf(ficalertes,"la commande %d n'a pas pu être traitée \n", ref);
+        }
+    }
+}*/
 
 int main()
 {
@@ -161,15 +232,15 @@ int main()
 	f=fopen("nextFact","w");
 	fwrite(&N,1,sizeof(int),f);
 	fclose(f);
-	 	
 
 	//PARTIE 1 du TP : sans Gestion de stock
-	lireLesCommandes(); //lecture de tous les fichiers commandeXXX.txt (fichiers non traités jusqu'ici)	
+	lireLesCommandes(); //lecture de tous les fichiers commandeXXX.txt (fichiers non traités jusqu'ici)
 	
 
 	//PARTIE 2 du TP : avec Gestion de stock
 	//copiez coller votre travail précédent puis modifiez le  
-	//lireLesCommandes2(); 	
+	//lireLesCommandes2();
+	//LireStocks();
 
 	return 0;
 }

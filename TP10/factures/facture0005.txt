@@ -1,0 +1,10 @@
+client: DUCHEMIN
+40 agrafeuse (PU=5.600000€)::224.00€
+20 classeur (PU=3.600000€)::72.00€
+35 ramette_feuillesA4 (PU=9.900000€)::346.50€
+65 boite_100enveloppes11*21 (PU=8.700000€)::565.50€
+45 boite_100enveloppes30*21 (PU=14.700000€)::661.50€
+15 boite_100enveloppes11*13 (PU=8.800000€)::132.00€
+10 boite_trombones (PU=4.100000€)::41.00€
+
+	TOTAL= 2042.500000
